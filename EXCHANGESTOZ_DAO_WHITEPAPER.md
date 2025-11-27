@@ -307,6 +307,35 @@ Contract to manage the DAO treasury:
 - **Address Whitelist**: List of allowed addresses to receive funds
 - **Multisig Integration**: Integration with multisig wallets for enhanced security
 
+### Token Economics
+
+#### Circulating Supply
+
+The ExchangeStozDAO token has a **Circulating Supply of 100,000,000 STOZ** tokens. This supply represents the total number of tokens currently in circulation and available for governance participation.
+
+#### Reward Distribution
+
+The unclaimed rewards from the token distribution are allocated according to the following structure:
+
+#### Distribution Details
+
+**Recipient Allocation (0.10%)**
+- Address: `0x3559...923b`
+- Purpose: Primary recipient allocation for community rewards and incentives
+
+**Protocol Allocation (Available for Sale)**
+- **Uniswap V3: STOZ-USDT**: 38.99%
+  - Purpose: Liquidity provision for the STOZ/USDT trading pair on Uniswap V3
+  - Ensures sufficient liquidity for token trading and price discovery
+- **DAO Treasury SafeWallet**: 50.90%
+  - Purpose: Secure treasury management for DAO operations and governance
+
+**Airdrop Allocation (10.00%)**
+- Address: `0x257fA3A32723F28f3B6a80d2E34852f21C51fb7E`
+- Purpose: Strategic airdrop distribution to expand community participation and token distribution
+
+This distribution structure ensures balanced allocation between community rewards, protocol liquidity, treasury management, and strategic airdrop distribution, fostering sustainable growth of the ExchangeStozDAO ecosystem.
+
 ### Governance Platform
 
 #### Snapshot Integration
@@ -926,6 +955,35 @@ Contrato para gestionar el tesoro de la DAO:
 - **Restricciones Codificadas**: Límites sobre tipos de gastos permitidos
 - **Whitelist de Direcciones**: Lista de direcciones permitidas para recibir fondos
 - **Multisig Integration**: Integración con wallets multisig para mayor seguridad
+
+### Economía del Token
+
+#### Circulating Supply
+
+El token ExchangeStozDAO tiene un **Circulating Supply de 100,000,000 STOZ** tokens. Esta oferta representa el número total de tokens actualmente en circulación y disponibles para participación en gobernanza.
+
+#### Distribución de Recompensas
+
+Las recompensas no reclamadas de la distribución de tokens se asignan de acuerdo con la siguiente estructura:
+
+#### Detalles de Distribución
+
+**Asignación Recipient (0.10%)**
+- Dirección: `0x3559...923b`
+- Propósito: Asignación principal de destinatario para recompensas e incentivos comunitarios
+
+**Asignación Protocol (Disponible para venta)**
+- **Uniswap V3: STOZ-USDT**: 38.99%
+  - Propósito: Provisión de liquidez para el par de trading STOZ/USDT en Uniswap V3
+  - Asegura liquidez suficiente para el trading de tokens y descubrimiento de precios
+- **Tesorería DAO SafeWallet**: 50.90%
+  - Propósito: Gestión segura del tesoro para operaciones y gobernanza de la DAO
+
+**Asignación Airdrop (10.00%)**
+- Dirección: `0x257fA3A32723F28f3B6a80d2E34852f21C51fb7E`
+- Propósito: Distribución estratégica de airdrop para expandir la participación comunitaria y la distribución de tokens
+
+Esta estructura de distribución asegura una asignación equilibrada entre recompensas comunitarias, liquidez del protocolo, gestión del tesoro y distribución estratégica de airdrop, fomentando el crecimiento sostenible del ecosistema ExchangeStozDAO.
 
 ### Plataforma de Gobernanza
 
