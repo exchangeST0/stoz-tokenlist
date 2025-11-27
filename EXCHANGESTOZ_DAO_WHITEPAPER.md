@@ -30,7 +30,7 @@
 ### Key Points
 
 - **Pure Governance Token**: ExchangeStozDAO grants exclusively participation rights in governance decisions, without economic rights, dividends, or equity participation
-- **Decentralized Governance**: All decisions are made through on-chain voting with minimum quorum and total transparency
+- **Decentralized Governance**: All decisions are made through off-chain voting via Snapshot platform with minimum quorum and total transparency
 - **Fund Management**: The DAO manages resources for legal expenses, regulatory compliance, licensing, operational costs, marketing, and technological development
 - **Non-Security Structure**: Specifically designed to avoid classification as a security under financial regulations
 - **Total Transparency**: All transactions and decisions recorded on the Ethereum blockchain
@@ -187,7 +187,7 @@ We are at the forefront of blockchain technology, offering innovative solutions 
 
 The ExchangeStozDAO token serves as a mechanism for participation in the DAO's decentralized governance, enabling holders to:
 
-1. **Voting Rights**: Participate in decisions regarding fund allocation through on-chain voting with minimum quorum requirements
+1. **Voting Rights**: Participate in decisions regarding fund allocation through off-chain voting via Snapshot platform with minimum quorum requirements
 2. **Proposal Rights**: Submit proposals for community consideration related to legal, regulatory, operational, marketing, and development expenses
 3. **Transparency and Access**: Access public information regarding all decisions, transactions, and treasury status of the DAO
 4. **Delegation**: Delegate voting power to other community members
@@ -263,49 +263,62 @@ Under the Howey test (used by the SEC), an instrument is a security if it meets 
 
 #### Governance Token (ERC-20)
 
-The ExchangeStozDAO token contract implements the ERC-20 standard with the following characteristics:
+The ExchangeStozDAO token contract implements the standard ERC-20 interface with the following characteristics:
 
-- **Standard Functions**: `transfer`, `approve`, `balanceOf`, `totalSupply`
-- **Governance Functions**: Integration with governance contract for voting
-- **Delegation**: Ability to delegate voting power
+- **Standard ERC-20 Functions**: `transfer`, `approve`, `transferFrom`, `balanceOf`, `allowance`, `totalSupply`, `decimals`, `name`, `symbol`
+- **Permit Support**: EIP-2612 permit functionality for gasless approvals
+- **Burn Functionality**: `burn` and `burnFrom` functions for token supply management
+- **Ownership Management**: Ownable pattern with ownership transfer capabilities
 - **Coded Restrictions**: The contract explicitly does NOT include functions for dividends, profits, or profit distribution
 
 ```solidity
-// Conceptual structure example
+// Current contract structure (ERC-20 Standard)
 contract ExchangeStozDAO is ERC20 {
-    // Standard transfer functions
+    // Standard ERC-20 functions
     function transfer(address to, uint256 amount) external returns (bool);
+    function transferFrom(address from, address to, uint256 amount) external returns (bool);
+    function approve(address spender, uint256 amount) external returns (bool);
     function balanceOf(address account) external view returns (uint256);
+    function allowance(address owner, address spender) external view returns (uint256);
+    function totalSupply() external view returns (uint256);
     
-    // Governance functions
-    function delegate(address delegatee) external;
-    function getVotes(address account) external view returns (uint256);
+    // Permit (EIP-2612) for gasless approvals
+    function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
+    
+    // Burn functions
+    function burn(uint256 amount) external;
+    function burnFrom(address from, uint256 amount) external;
     
     // EXPLICITLY DOES NOT include:
+    // - function delegate(address delegatee) ❌ (Not implemented - governance is off-chain via Snapshot)
+    // - function getVotes(address account) ❌ (Not implemented - governance is off-chain via Snapshot)
     // - function claimDividends() ❌
     // - function getCompanyProfitShare() ❌
     // - function transferEquity() ❌
 }
 ```
 
-#### Governance Contract
+**Note**: The current contract is a standard ERC-20 token. Governance functionality is implemented off-chain through the Snapshot platform, which uses token balances at specific blocks to determine voting power. This approach allows for gasless voting while maintaining transparency and verifiability.
 
-Implementation of voting mechanism based on standards such as Governor Bravo or OpenZeppelin Governor:
+#### Governance Platform (Off-Chain via Snapshot)
 
-- **Proposal Creation**: Any holder can create proposals
-- **On-Chain Voting**: All votes are recorded on the blockchain
-- **Minimum Quorum**: Minimum participation requirement for validity
-- **Timelock**: Delay in execution of approved proposals
-- **Usage Restrictions**: Validation that rejects proposals attempting to distribute profits
+The DAO uses **Snapshot** as its governance platform for off-chain voting and proposal management:
 
-#### Treasury Contract
+- **Proposal Creation**: Any STOZ holder can create proposals on Snapshot
+- **Off-Chain Voting**: All votes are recorded on Snapshot (gasless voting)
+- **Voting Power**: Determined by token balance at a specific snapshot block
+- **Minimum Quorum**: Minimum participation requirement for proposal validity
+- **Transparency**: All proposals and votes are publicly visible on Snapshot
+- **On-Chain Execution**: Approved proposals can be executed on-chain through multisig wallets
 
-Contract to manage the DAO treasury:
+#### Treasury Management (Future Implementation)
 
-- **Fund Storage**: Secure management of DAO assets
-- **Coded Restrictions**: Limits on allowed expense types
-- **Address Whitelist**: List of allowed addresses to receive funds
-- **Multisig Integration**: Integration with multisig wallets for enhanced security
+Future treasury management may include:
+
+- **Fund Storage**: Secure management of DAO assets in multisig wallets
+- **Coded Restrictions**: Smart contract-based limits on allowed expense types
+- **Address Whitelist**: List of approved addresses to receive funds
+- **Multisig Integration**: Integration with Safe (formerly Gnosis Safe) multisig wallets for enhanced security
 
 ### Token Economics
 
@@ -430,17 +443,19 @@ The timelock provides a grace period after approval for:
 
 ### Vote Delegation
 
-Holders can delegate their voting power to:
+Holders can delegate their voting power through the Snapshot platform to:
 
 - **Other Holders**: Community members they trust
 - **Representatives**: Delegates representing specific interests
 - **Delegation Protocols**: Automated delegation systems
 
-Delegation can be:
+Delegation on Snapshot can be:
 
 - **Temporary**: For specific periods
 - **Per Proposal**: Delegate only for specific proposals
 - **Permanent**: Until explicitly revoked
+
+**Note**: Delegation is managed off-chain through Snapshot's delegation features, allowing holders to delegate their voting power without on-chain transactions.
 
 ### Transparency and Auditing
 
@@ -460,13 +475,14 @@ Real-time visualization of:
 - **Regulatory Updates**: Status of licenses and compliance
 - **Activity Summary**: Legal, operational, and strategic activities
 
-#### On-Chain Verification
+#### Verification and Transparency
 
-All activities are verifiable directly on the Ethereum blockchain:
+All activities are verifiable and transparent:
 
-- **Proposals**: Recorded as on-chain events
-- **Votes**: Each vote is a verifiable transaction
-- **Treasury Transactions**: All fund transfers are public
+- **Proposals**: Created and recorded on Snapshot platform (publicly visible)
+- **Votes**: Recorded on Snapshot platform (off-chain, gasless, but publicly verifiable)
+- **Proposal Execution**: Approved proposals executed on-chain through multisig wallets (verifiable on Ethereum blockchain)
+- **Treasury Transactions**: All fund transfers are public and verifiable on the Ethereum blockchain
 
 ---
 
@@ -679,7 +695,7 @@ The DAO and the ExchangeStoz platform are provided "as is" without warranties of
 ### Puntos Clave
 
 - **Token de Gobernanza Puro**: ExchangeStozDAO otorga exclusivamente derechos de participación en decisiones de gobernanza, sin derechos económicos, dividendos o participación accionaria
-- **Gobernanza Descentralizada**: Todas las decisiones se toman mediante votación on-chain con quorum mínimo y transparencia total
+- **Gobernanza Descentralizada**: Todas las decisiones se toman mediante votación off-chain a través de la plataforma Snapshot con quorum mínimo y transparencia total
 - **Gestión de Fondos**: La DAO gestiona recursos para gastos legales, cumplimiento regulatorio, licenciamiento, costos operativos, marketing y desarrollo tecnológico
 - **Estructura No-Security**: Diseñado específicamente para evitar clasificación como valor mobiliario bajo regulaciones financieras
 - **Transparencia Total**: Todas las transacciones y decisiones registradas en la blockchain de Ethereum
@@ -836,7 +852,7 @@ Estamos a la vanguardia de la tecnología blockchain, ofreciendo soluciones inno
 
 El token ExchangeStozDAO sirve como mecanismo de participación en la gobernanza descentralizada de la DAO, permitiendo a los holders:
 
-1. **Derechos de Votación**: Participar en decisiones sobre el uso de fondos mediante votación on-chain con quorum mínimo
+1. **Derechos de Votación**: Participar en decisiones sobre el uso de fondos mediante votación off-chain a través de la plataforma Snapshot con quorum mínimo
 2. **Derechos de Propuesta**: Presentar propuestas para consideración de la comunidad relacionadas con gastos legales, regulatorios, operativos, marketing y desarrollo
 3. **Transparencia y Acceso**: Acceder a información pública sobre todas las decisiones, transacciones y estado del tesoro de la DAO
 4. **Delegación**: Delegar poder de voto a otros miembros de la comunidad
@@ -912,49 +928,62 @@ Bajo el test de Howey (utilizado por la SEC), un instrumento es un security si c
 
 #### Token de Gobernanza (ERC-20)
 
-El contrato del token ExchangeStozDAO implementa el estándar ERC-20 con las siguientes características:
+El contrato del token ExchangeStozDAO implementa la interfaz estándar ERC-20 con las siguientes características:
 
-- **Funciones Estándar**: `transfer`, `approve`, `balanceOf`, `totalSupply`
-- **Funciones de Gobernanza**: Integración con el contrato de gobernanza para votación
-- **Delegación**: Capacidad de delegar poder de voto
+- **Funciones ERC-20 Estándar**: `transfer`, `approve`, `transferFrom`, `balanceOf`, `allowance`, `totalSupply`, `decimals`, `name`, `symbol`
+- **Soporte Permit**: Funcionalidad permit (EIP-2612) para aprobaciones sin gas
+- **Funcionalidad de Quema**: Funciones `burn` y `burnFrom` para gestión del suministro de tokens
+- **Gestión de Propiedad**: Patrón Ownable con capacidades de transferencia de propiedad
 - **Restricciones Codificadas**: El contrato explícitamente NO incluye funciones de dividendos, utilidades o distribución de ganancias
 
 ```solidity
-// Ejemplo conceptual de estructura
+// Estructura del contrato actual (Estándar ERC-20)
 contract ExchangeStozDAO is ERC20 {
-    // Funciones de transferencia estándar
+    // Funciones ERC-20 estándar
     function transfer(address to, uint256 amount) external returns (bool);
+    function transferFrom(address from, address to, uint256 amount) external returns (bool);
+    function approve(address spender, uint256 amount) external returns (bool);
     function balanceOf(address account) external view returns (uint256);
+    function allowance(address owner, address spender) external view returns (uint256);
+    function totalSupply() external view returns (uint256);
     
-    // Funciones de gobernanza
-    function delegate(address delegatee) external;
-    function getVotes(address account) external view returns (uint256);
+    // Permit (EIP-2612) para aprobaciones sin gas
+    function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
+    
+    // Funciones de quema
+    function burn(uint256 amount) external;
+    function burnFrom(address from, uint256 amount) external;
     
     // EXPLÍCITAMENTE NO incluye:
+    // - function delegate(address delegatee) ❌ (No implementado - gobernanza es off-chain vía Snapshot)
+    // - function getVotes(address account) ❌ (No implementado - gobernanza es off-chain vía Snapshot)
     // - function claimDividends() ❌
     // - function getCompanyProfitShare() ❌
     // - function transferEquity() ❌
 }
 ```
 
-#### Contrato de Gobernanza
+**Nota**: El contrato actual es un token ERC-20 estándar. La funcionalidad de gobernanza se implementa off-chain a través de la plataforma Snapshot, que utiliza balances de tokens en bloques específicos para determinar el poder de voto. Este enfoque permite votación sin gas mientras mantiene transparencia y verificabilidad.
 
-Implementación de mecanismo de votación basado en estándares como Governor Bravo o OpenZeppelin Governor:
+#### Plataforma de Gobernanza (Off-Chain vía Snapshot)
 
-- **Creación de Propuestas**: Cualquier holder puede crear propuestas
-- **Votación On-Chain**: Todas las votaciones se registran en la blockchain
-- **Quorum Mínimo**: Requisito de participación mínima para validez
-- **Timelock**: Retraso en la ejecución de propuestas aprobadas
-- **Restricciones de Uso**: Validación que rechaza propuestas que intenten distribuir utilidades
+La DAO utiliza **Snapshot** como su plataforma de gobernanza para votación off-chain y gestión de propuestas:
 
-#### Treasury Contract
+- **Creación de Propuestas**: Cualquier holder de STOZ puede crear propuestas en Snapshot
+- **Votación Off-Chain**: Todas las votaciones se registran en Snapshot (votación sin gas)
+- **Poder de Voto**: Determinado por el balance de tokens en un bloque de instantánea específico
+- **Quorum Mínimo**: Requisito de participación mínima para validez de propuestas
+- **Transparencia**: Todas las propuestas y votos son públicamente visibles en Snapshot
+- **Ejecución On-Chain**: Las propuestas aprobadas pueden ejecutarse on-chain a través de wallets multisig
 
-Contrato para gestionar el tesoro de la DAO:
+#### Gestión del Tesoro (Implementación Futura)
 
-- **Almacenamiento de Fondos**: Gestión segura de activos de la DAO
-- **Restricciones Codificadas**: Límites sobre tipos de gastos permitidos
-- **Whitelist de Direcciones**: Lista de direcciones permitidas para recibir fondos
-- **Multisig Integration**: Integración con wallets multisig para mayor seguridad
+La gestión futura del tesoro puede incluir:
+
+- **Almacenamiento de Fondos**: Gestión segura de activos de la DAO en wallets multisig
+- **Restricciones Codificadas**: Límites basados en contratos inteligentes sobre tipos de gastos permitidos
+- **Whitelist de Direcciones**: Lista de direcciones aprobadas para recibir fondos
+- **Integración Multisig**: Integración con wallets multisig Safe (anteriormente Gnosis Safe) para mayor seguridad
 
 ### Economía del Token
 
@@ -1079,17 +1108,19 @@ El timelock proporciona un período de gracia después de la aprobación para:
 
 ### Delegación de Voto
 
-Los holders pueden delegar su poder de voto a:
+Los holders pueden delegar su poder de voto a través de la plataforma Snapshot a:
 
 - **Otros Holders**: Miembros de la comunidad en quienes confían
 - **Representantes**: Delegados que representan intereses específicos
 - **Protocolos de Delegación**: Sistemas automatizados de delegación
 
-La delegación puede ser:
+La delegación en Snapshot puede ser:
 
 - **Temporal**: Por períodos específicos
 - **Por Propuesta**: Delegar solo para propuestas específicas
 - **Permanente**: Hasta que se revoque explícitamente
+
+**Nota**: La delegación se gestiona off-chain a través de las funciones de delegación de Snapshot, permitiendo a los holders delegar su poder de voto sin transacciones on-chain.
 
 ### Transparencia y Auditoría
 
@@ -1109,13 +1140,14 @@ Visualización en tiempo real de:
 - **Actualizaciones Regulatorias**: Estado de licencias y cumplimiento
 - **Resumen de Actividades**: Actividades legales, operativas y estratégicas
 
-#### Verificación On-Chain
+#### Verificación y Transparencia
 
-Todas las actividades son verificables directamente en la blockchain de Ethereum:
+Todas las actividades son verificables y transparentes:
 
-- **Propuestas**: Registradas como eventos on-chain
-- **Votos**: Cada voto es una transacción verificable
-- **Transacciones del Tesoro**: Todas las transferencias de fondos son públicas
+- **Propuestas**: Creadas y registradas en la plataforma Snapshot (públicamente visibles)
+- **Votos**: Registrados en la plataforma Snapshot (off-chain, sin gas, pero públicamente verificables)
+- **Ejecución de Propuestas**: Propuestas aprobadas ejecutadas on-chain a través de wallets multisig (verificables en la blockchain de Ethereum)
+- **Transacciones del Tesoro**: Todas las transferencias de fondos son públicas y verificables en la blockchain de Ethereum
 
 ---
 
