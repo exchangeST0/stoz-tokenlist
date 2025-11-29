@@ -1,9 +1,9 @@
-# ExchangeStozDAO Whitepaper
+﻿# ExchangeStozDAO Whitepaper
 ## Decentralized Governance for Asset Tokenization Platform
 
-**Version:** 1.0  
-**Date:** November 2025  
-**Contract:** `0xb74dCc3ee89a19741dCdeafF3F687Fd708c8c580`  
+**Version:** 1.0 
+**Date:** November 2025 
+**Contract:** `0xb74dCc3ee89a19741dCdeafF3F687Fd708c8c580` 
 **Network:** Ethereum Mainnet (Chain ID: 1)
 
 ---
@@ -153,16 +153,16 @@ The **Bazaar** is the secondary market for security token trading:
 
 ### Core Values
 
-#### 🔒 Security and Compliance
+#### Security and Compliance
 Implementation of the highest standards of security and regulatory compliance. All tokens can be configured with KYC/AML requirements and whitelist according to issuer needs.
 
-#### 🌐 Decentralization
+#### Decentralization
 Belief in the power of decentralization. The platform operates through verifiable smart contracts and community governance.
 
-#### 📊 Transparency
+#### Transparency
 All transactions, distributions, and governance decisions are recorded on the blockchain, ensuring total transparency.
 
-#### 🚀 Innovation
+#### Innovation
 We are at the forefront of blockchain technology, offering innovative solutions for real-world asset tokenization.
 
 ---
@@ -236,11 +236,11 @@ Governance exercised through ExchangeStozDAO allows holders to propose, debate, 
 
 ExchangeStozDAO is structured as a pure governance token that **explicitly does NOT grant**:
 
-- ❌ Participation in profits or earnings of any entity
-- ❌ Rights to dividends or income distribution
-- ❌ Equity participation or company ownership
-- ❌ Expectation of investment return
-- ❌ Any form of security or financial instrument
+- Participation in profits or earnings of any entity
+- Rights to dividends or income distribution
+- Equity participation or company ownership
+- Expectation of investment return
+- Any form of security or financial instrument
 
 The token complies with the principles of utility governance tokens, where its value resides exclusively in the capacity to participate in decentralized decisions, not in economic expectations.
 
@@ -248,10 +248,10 @@ The token complies with the principles of utility governance tokens, where its v
 
 Under the Howey test (used by the SEC), an instrument is a security if it meets **ALL** of these criteria:
 
-1. **Investment of Money** ❓ (May apply)
-2. **In a Common Enterprise** ❓ (May apply)
-3. **With Expectation of Profits** ✅ **DOES NOT APPLY** - Tokens do NOT grant rights to profits
-4. **Derived from the Efforts of Others** ✅ **DOES NOT APPLY** - Governance is exercised by the holders themselves
+1. **Investment of Money** ✓ (May apply)
+2. **In a Common Enterprise** ✓ (May apply)
+3. **With Expectation of Profits** ✗ **DOES NOT APPLY** - Tokens do NOT grant rights to profits
+4. **Derived from the Efforts of Others** ✗ **DOES NOT APPLY** - Governance is exercised by the holders themselves
 
 **Conclusion**: By eliminating elements 3 and 4 (rights to profits and expectation of return), the tokens do NOT meet the complete Howey test.
 
@@ -274,27 +274,27 @@ The ExchangeStozDAO token contract implements the standard ERC-20 interface with
 ```solidity
 // Current contract structure (ERC-20 Standard)
 contract ExchangeStozDAO is ERC20 {
-    // Standard ERC-20 functions
-    function transfer(address to, uint256 amount) external returns (bool);
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
-    function approve(address spender, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-    function allowance(address owner, address spender) external view returns (uint256);
-    function totalSupply() external view returns (uint256);
-    
-    // Permit (EIP-2612) for gasless approvals
-    function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
-    
-    // Burn functions
-    function burn(uint256 amount) external;
-    function burnFrom(address from, uint256 amount) external;
-    
-    // EXPLICITLY DOES NOT include:
-    // - function delegate(address delegatee) ❌ (Not implemented - governance is off-chain via Snapshot)
-    // - function getVotes(address account) ❌ (Not implemented - governance is off-chain via Snapshot)
-    // - function claimDividends() ❌
-    // - function getCompanyProfitShare() ❌
-    // - function transferEquity() ❌
+ // Standard ERC-20 functions
+ function transfer(address to, uint256 amount) external returns (bool);
+ function transferFrom(address from, address to, uint256 amount) external returns (bool);
+ function approve(address spender, uint256 amount) external returns (bool);
+ function balanceOf(address account) external view returns (uint256);
+ function allowance(address owner, address spender) external view returns (uint256);
+ function totalSupply() external view returns (uint256);
+ 
+ // Permit (EIP-2612) for gasless approvals
+ function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
+ 
+ // Burn functions
+ function burn(uint256 amount) external;
+ function burnFrom(address from, uint256 amount) external;
+ 
+ // EXPLICITLY DOES NOT include:
+ // - function delegate(address delegatee) (Not implemented - governance is off-chain via Snapshot)
+ // - function getVotes(address account) (Not implemented - governance is off-chain via Snapshot)
+ // - function claimDividends() ✗
+ // - function getCompanyProfitShare() ✗
+ // - function transferEquity() ✗
 }
 ```
 
@@ -338,12 +338,12 @@ The unclaimed rewards from the token distribution are allocated according to the
 
 **Protocol Allocation (Available for Sale)**
 - **Uniswap V3: STOZ-USDT**: 38.99%
-  - Purpose: Liquidity provision for the STOZ/USDT trading pair on Uniswap V3
-  - Ensures sufficient liquidity for token trading and price discovery
+ - Purpose: Liquidity provision for the STOZ/USDT trading pair on Uniswap V3
+ - Ensures sufficient liquidity for token trading and price discovery
 - **DAO Treasury SafeWallet**: 50.90%
-  - Purpose: Secure treasury management for DAO operations and governance
+ - Purpose: Secure treasury management for DAO operations and governance
 
-**Airdrop Allocation (10.00%)**
+**Fund Grant (10.00%)**
 - Address: `0x257fA3A32723F28f3B6a80d2E34852f21C51fb7E`
 - Purpose: Strategic airdrop distribution to expand community participation and token distribution
 
@@ -493,14 +493,14 @@ All activities are verifiable and transparent:
 **Dual Structure**:
 
 - **Governance DAO**: 
-  - Governance tokens (NOT securities)
-  - Control over funds for legal/licensing expenses
-  - No economic rights over the company
+ - Governance tokens (NOT securities)
+ - Control over funds for legal/licensing expenses
+ - No economic rights over the company
 
 - **Operating Company**:
-  - Separate legal entity (LLC, Corp, etc.)
-  - Ownership and profits remain in the company
-  - The DAO does NOT have equity participation
+ - Separate legal entity (LLC, Corp, etc.)
+ - Ownership and profits remain in the company
+ - The DAO does NOT have equity participation
 
 ### Restrictions in Smart Contracts
 
@@ -538,7 +538,7 @@ The DAO considers regulations in multiple jurisdictions:
 
 ## Roadmap and Future Development
 
-### Phase 1: Initial Launch ✅
+### Phase 1: Initial Launch ✓
 
 - [x] Smart contract development
 - [x] Security audit
@@ -666,9 +666,9 @@ The DAO and the ExchangeStoz platform are provided "as is" without warranties of
 # ExchangeStozDAO Whitepaper
 ## Gobernanza Descentralizada para la Plataforma de Tokenización de Activos
 
-**Versión:** 1.0  
-**Fecha:** Noviembre 2025  
-**Contrato:** `0xb74dCc3ee89a19741dCdeafF3F687Fd708c8c580`  
+**Versión:** 1.0 
+**Fecha:** Noviembre 2025 
+**Contrato:** `0xb74dCc3ee89a19741dCdeafF3F687Fd708c8c580` 
 **Red:** Ethereum Mainnet (Chain ID: 1)
 
 ---
@@ -818,16 +818,16 @@ El **Bazaar** es el mercado secundario para el trading de tokens de seguridad:
 
 ### Valores Fundamentales
 
-#### 🔒 Seguridad y Compliance
+#### Seguridad y Compliance
 Implementación de los más altos estándares de seguridad y cumplimiento regulatorio. Todos los tokens pueden ser configurados con requisitos KYC/AML y whitelist según las necesidades del emisor.
 
-#### 🌐 Descentralización
+#### Descentralización
 Creencia en el poder de la descentralización. La plataforma opera mediante contratos inteligentes verificables y gobernanza comunitaria.
 
-#### 📊 Transparencia
+#### Transparencia
 Todas las transacciones, distribuciones y decisiones de gobernanza son registradas en la blockchain, garantizando transparencia total.
 
-#### 🚀 Innovación
+#### Innovación
 Estamos a la vanguardia de la tecnología blockchain, ofreciendo soluciones innovadoras para la tokenización de activos reales.
 
 ---
@@ -901,11 +901,11 @@ La gobernanza ejercida a través de ExchangeStozDAO permite a los holders propon
 
 ExchangeStozDAO está estructurado como un token de gobernanza puro que **explícitamente NO otorga**:
 
-- ❌ Participación en ganancias o utilidades de ninguna entidad
-- ❌ Derechos a dividendos o distribución de ingresos
-- ❌ Participación accionaria o propiedad de la compañía
-- ❌ Expectativa de retorno de inversión
-- ❌ Cualquier forma de security o valor mobiliario
+- Participación en ganancias o utilidades de ninguna entidad
+- Derechos a dividendos o distribución de ingresos
+- Participación accionaria o propiedad de la compañía
+- Expectativa de retorno de inversión
+- Cualquier forma de security o valor mobiliario
 
 El token cumple con los principios de tokens utilitarios de gobernanza, donde su valor reside únicamente en la capacidad de participar en decisiones descentralizadas, no en expectativas económicas.
 
@@ -913,10 +913,10 @@ El token cumple con los principios de tokens utilitarios de gobernanza, donde su
 
 Bajo el test de Howey (utilizado por la SEC), un instrumento es un security si cumple **TODOS** estos criterios:
 
-1. **Inversión de Dinero** ❓ (Puede aplicarse)
-2. **En una Empresa Común** ❓ (Puede aplicarse)
-3. **Con Expectativa de Ganancias** ✅ **NO APLICA** - Los tokens NO otorgan derechos a ganancias
-4. **Derivadas del Esfuerzo de Otros** ✅ **NO APLICA** - La gobernanza es ejercida por los propios holders
+1. **Inversión de Dinero** ✓ (Puede aplicarse)
+2. **En una Empresa Común** ✓ (Puede aplicarse)
+3. **Con Expectativa de Ganancias** ✗ **NO APLICA** - Los tokens NO otorgan derechos a ganancias
+4. **Derivadas del Esfuerzo de Otros** ✗ **NO APLICA** - La gobernanza es ejercida por los propios holders
 
 **Conclusión**: Al eliminar los elementos 3 y 4 (derechos a utilidades y expectativa de retorno), los tokens NO cumplen el test de Howey completo.
 
@@ -939,27 +939,27 @@ El contrato del token ExchangeStozDAO implementa la interfaz estándar ERC-20 co
 ```solidity
 // Estructura del contrato actual (Estándar ERC-20)
 contract ExchangeStozDAO is ERC20 {
-    // Funciones ERC-20 estándar
-    function transfer(address to, uint256 amount) external returns (bool);
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
-    function approve(address spender, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-    function allowance(address owner, address spender) external view returns (uint256);
-    function totalSupply() external view returns (uint256);
-    
-    // Permit (EIP-2612) para aprobaciones sin gas
-    function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
-    
-    // Funciones de quema
-    function burn(uint256 amount) external;
-    function burnFrom(address from, uint256 amount) external;
-    
-    // EXPLÍCITAMENTE NO incluye:
-    // - function delegate(address delegatee) ❌ (No implementado - gobernanza es off-chain vía Snapshot)
-    // - function getVotes(address account) ❌ (No implementado - gobernanza es off-chain vía Snapshot)
-    // - function claimDividends() ❌
-    // - function getCompanyProfitShare() ❌
-    // - function transferEquity() ❌
+ // Funciones ERC-20 estándar
+ function transfer(address to, uint256 amount) external returns (bool);
+ function transferFrom(address from, address to, uint256 amount) external returns (bool);
+ function approve(address spender, uint256 amount) external returns (bool);
+ function balanceOf(address account) external view returns (uint256);
+ function allowance(address owner, address spender) external view returns (uint256);
+ function totalSupply() external view returns (uint256);
+ 
+ // Permit (EIP-2612) para aprobaciones sin gas
+ function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
+ 
+ // Funciones de quema
+ function burn(uint256 amount) external;
+ function burnFrom(address from, uint256 amount) external;
+ 
+ // EXPLÍCITAMENTE NO incluye:
+ // - function delegate(address delegatee) (No implementado - gobernanza es off-chain vía Snapshot)
+ // - function getVotes(address account) (No implementado - gobernanza es off-chain vía Snapshot)
+ // - function claimDividends() ✗
+ // - function getCompanyProfitShare() ✗
+ // - function transferEquity() ✗
 }
 ```
 
@@ -1003,10 +1003,10 @@ Las recompensas no reclamadas de la distribución de tokens se asignan de acuerd
 
 **Asignación Protocol (Disponible para venta)**
 - **Uniswap V3: STOZ-USDT**: 38.99%
-  - Propósito: Provisión de liquidez para el par de trading STOZ/USDT en Uniswap V3
-  - Asegura liquidez suficiente para el trading de tokens y descubrimiento de precios
+ - Propósito: Provisión de liquidez para el par de trading STOZ/USDT en Uniswap V3
+ - Asegura liquidez suficiente para el trading de tokens y descubrimiento de precios
 - **Tesorería DAO SafeWallet**: 50.90%
-  - Propósito: Gestión segura del tesoro para operaciones y gobernanza de la DAO
+ - Propósito: Gestión segura del tesoro para operaciones y gobernanza de la DAO
 
 **Asignación Airdrop (10.00%)**
 - Dirección: `0x257fA3A32723F28f3B6a80d2E34852f21C51fb7E`
@@ -1158,14 +1158,14 @@ Todas las actividades son verificables y transparentes:
 **Estructura Dual**:
 
 - **DAO de Gobernanza**: 
-  - Tokens de gobernanza (NO securities)
-  - Control sobre fondos para gastos legales/licenciamiento
-  - Sin derechos económicos sobre la compañía
+ - Tokens de gobernanza (NO securities)
+ - Control sobre fondos para gastos legales/licenciamiento
+ - Sin derechos económicos sobre la compañía
 
 - **Compañía Operativa**:
-  - Entidad legal separada (LLC, Corp, etc.)
-  - Propiedad y utilidades permanecen en la compañía
-  - La DAO NO tiene participación accionaria
+ - Entidad legal separada (LLC, Corp, etc.)
+ - Propiedad y utilidades permanecen en la compañía
+ - La DAO NO tiene participación accionaria
 
 ### Restricciones en Contratos Inteligentes
 
@@ -1203,7 +1203,7 @@ La DAO considera regulaciones en múltiples jurisdicciones:
 
 ## Roadmap y Desarrollo Futuro
 
-### Fase 1: Lanzamiento Inicial ✅
+### Fase 1: Lanzamiento Inicial ✓
 
 - [x] Desarrollo de contratos inteligentes
 - [x] Auditoría de seguridad
