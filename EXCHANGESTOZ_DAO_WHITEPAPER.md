@@ -153,16 +153,16 @@ The **Bazaar** is the secondary market for security token trading:
 
 ### Core Values
 
-#### ­ƒöÆ Security and Compliance
+#### Security and Compliance
 Implementation of the highest standards of security and regulatory compliance. All tokens can be configured with KYC/AML requirements and whitelist according to issuer needs.
 
-#### ­ƒîÉ Decentralization
+#### Decentralization
 Belief in the power of decentralization. The platform operates through verifiable smart contracts and community governance.
 
-#### ­ƒôè Transparency
+#### Transparency
 All transactions, distributions, and governance decisions are recorded on the blockchain, ensuring total transparency.
 
-#### ­ƒÜÇ Innovation
+#### Innovation
 We are at the forefront of blockchain technology, offering innovative solutions for real-world asset tokenization.
 
 ---
@@ -274,27 +274,27 @@ The ExchangeStozDAO token contract implements the standard ERC-20 interface with
 ```solidity
 // Current contract structure (ERC-20 Standard)
 contract ExchangeStozDAO is ERC20 {
-  // Standard ERC-20 functions
-  function transfer(address to, uint256 amount) external returns (bool);
-  function transferFrom(address from, address to, uint256 amount) external returns (bool);
-  function approve(address spender, uint256 amount) external returns (bool);
-  function balanceOf(address account) external view returns (uint256);
-  function allowance(address owner, address spender) external view returns (uint256);
-  function totalSupply() external view returns (uint256);
-  
-  // Permit (EIP-2612) for gasless approvals
-  function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
-  
-  // Burn functions
-  function burn(uint256 amount) external;
-  function burnFrom(address from, uint256 amount) external;
-  
-  // EXPLICITLY DOES NOT include:
-  // - function delegate(address delegatee) ÔØî (Not implemented - governance is off-chain via Snapshot)
-  // - function getVotes(address account) ÔØî (Not implemented - governance is off-chain via Snapshot)
-  // - function claimDividends() ÔØî
-  // - function getCompanyProfitShare() ÔØî
-  // - function transferEquity() ÔØî
+ // Standard ERC-20 functions
+ function transfer(address to, uint256 amount) external returns (bool);
+ function transferFrom(address from, address to, uint256 amount) external returns (bool);
+ function approve(address spender, uint256 amount) external returns (bool);
+ function balanceOf(address account) external view returns (uint256);
+ function allowance(address owner, address spender) external view returns (uint256);
+ function totalSupply() external view returns (uint256);
+ 
+ // Permit (EIP-2612) for gasless approvals
+ function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
+ 
+ // Burn functions
+ function burn(uint256 amount) external;
+ function burnFrom(address from, uint256 amount) external;
+ 
+ // EXPLICITLY DOES NOT include:
+ // - function delegate(address delegatee) (Not implemented - governance is off-chain via Snapshot)
+ // - function getVotes(address account) (Not implemented - governance is off-chain via Snapshot)
+ // - function claimDividends() ÔØî
+ // - function getCompanyProfitShare() ÔØî
+ // - function transferEquity() ÔØî
 }
 ```
 
@@ -939,27 +939,27 @@ El contrato del token ExchangeStozDAO implementa la interfaz est├índar ERC-20
 ```solidity
 // Estructura del contrato actual (Est├índar ERC-20)
 contract ExchangeStozDAO is ERC20 {
-  // Funciones ERC-20 est├índar
-  function transfer(address to, uint256 amount) external returns (bool);
-  function transferFrom(address from, address to, uint256 amount) external returns (bool);
-  function approve(address spender, uint256 amount) external returns (bool);
-  function balanceOf(address account) external view returns (uint256);
-  function allowance(address owner, address spender) external view returns (uint256);
-  function totalSupply() external view returns (uint256);
-  
-  // Permit (EIP-2612) para aprobaciones sin gas
-  function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
-  
-  // Funciones de quema
-  function burn(uint256 amount) external;
-  function burnFrom(address from, uint256 amount) external;
-  
-  // EXPL├ìCITAMENTE NO incluye:
-  // - function delegate(address delegatee) ÔØî (No implementado - gobernanza es off-chain v├¡a Snapshot)
-  // - function getVotes(address account) ÔØî (No implementado - gobernanza es off-chain v├¡a Snapshot)
-  // - function claimDividends() ÔØî
-  // - function getCompanyProfitShare() ÔØî
-  // - function transferEquity() ÔØî
+ // Funciones ERC-20 est├índar
+ function transfer(address to, uint256 amount) external returns (bool);
+ function transferFrom(address from, address to, uint256 amount) external returns (bool);
+ function approve(address spender, uint256 amount) external returns (bool);
+ function balanceOf(address account) external view returns (uint256);
+ function allowance(address owner, address spender) external view returns (uint256);
+ function totalSupply() external view returns (uint256);
+ 
+ // Permit (EIP-2612) para aprobaciones sin gas
+ function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
+ 
+ // Funciones de quema
+ function burn(uint256 amount) external;
+ function burnFrom(address from, uint256 amount) external;
+ 
+ // EXPL├ìCITAMENTE NO incluye:
+ // - function delegate(address delegatee) (No implementado - gobernanza es off-chain v├¡a Snapshot)
+ // - function getVotes(address account) (No implementado - gobernanza es off-chain v├¡a Snapshot)
+ // - function claimDividends() ÔØî
+ // - function getCompanyProfitShare() ÔØî
+ // - function transferEquity() ÔØî
 }
 ```
 
