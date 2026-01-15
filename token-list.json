@@ -6,7 +6,7 @@
     "patch": 0
   },
   "timestamp": "2025-11-27T12:00:00.000Z",
-  "logoURI": "https://www.exchangestoz.com/web-app-manifest-512x512.png",
+  "logoURI": "https://ipfs.io/ipfs/bafkreieafcuxs4gfcrrkyaoq6ttymnzcogb5ven67l3olgngjq653la4xa",
   "keywords": [
     "exchange",
     "dao",
@@ -21,7 +21,7 @@
       "name": "ExchangeStozDAO",
       "symbol": "STOZ",
       "decimals": 18,
-      "logoURI": "https://www.exchangestoz.com/web-app-manifest-512x512.png"
+      "logoURI": "https://ipfs.io/ipfs/bafkreieafcuxs4gfcrrkyaoq6ttymnzcogb5ven67l3olgngjq653la4xa"
     }
   ]
 }
