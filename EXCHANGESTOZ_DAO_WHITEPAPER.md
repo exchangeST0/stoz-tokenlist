@@ -341,7 +341,7 @@ The unclaimed rewards from the token distribution are allocated according to the
  - Purpose: Liquidity provision for the STOZ/USDT trading pair on Uniswap V3
  - Ensures sufficient liquidity for token trading and price discovery
 - **DAO Treasury SafeWallet**: 50.90%
- - Purpose: Secure treasury management for DAO operations and governance
+ - Purpose: Secure treasury management for DAO operations and governance DAO Lock `0x8139820c074d75911984ac4c5c2cfc291ad7adbc`
 
 **Fund Grant (10.00%)**
 - Address: `0x257fA3A32723F28f3B6a80d2E34852f21C51fb7E`
@@ -1006,7 +1006,7 @@ Las recompensas no reclamadas de la distribución de tokens se asignan de acuerd
  - Propósito: Provisión de liquidez para el par de trading STOZ/USDT en Uniswap V3
  - Asegura liquidez suficiente para el trading de tokens y descubrimiento de precios
 - **Tesorería DAO SafeWallet**: 50.90%
- - Propósito: Gestión segura del tesoro para operaciones y gobernanza de la DAO
+ - Propósito: Gestión segura del tesoro para operaciones y gobernanza de la DAO Lock `0x8139820c074d75911984ac4c5c2cfc291ad7adbc`
 
 **Asignación Airdrop (10.00%)**
 - Dirección: `0x257fA3A32723F28f3B6a80d2E34852f21C51fb7E`
